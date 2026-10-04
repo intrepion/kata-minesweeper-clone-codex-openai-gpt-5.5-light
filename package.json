@@ -4,11 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite --host 127.0.0.1",
+    "dev": "vite --host 127.0.0.1 --open /dev.html",
     "build": "tsc && vite build",
     "build:file": "npm run build && node scripts/build-file.mjs",
     "check": "npm run test:unit && npm run build",
-    "test:file": "npm run build:file && playwright test tests/direct-file.spec.ts",
+    "test:file": "npm run build:file && PLAYWRIGHT_NO_WEBSERVER=1 playwright test tests/direct-file.spec.ts",
     "test:unit": "vitest run src",
     "test:unit:watch": "vitest",
     "test:e2e": "playwright test"

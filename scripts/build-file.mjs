@@ -3,7 +3,7 @@ import { dirname, join } from "node:path";
 
 const distDir = "dist";
 const fileDistDir = "dist-file";
-const html = await readFile(join(distDir, "index.html"), "utf8");
+const html = await readFile(join(distDir, "dev.html"), "utf8");
 const scriptMatch = html.match(/<script type="module" crossorigin src="(?<src>[^"]+)"><\/script>/);
 const styleMatch = html.match(/<link rel="stylesheet" crossorigin href="(?<href>[^"]+)">/);
 
@@ -18,8 +18,10 @@ const [script, style] = await Promise.all([readFile(scriptPath, "utf8"), readFil
 const fileHtml = html
   .replace(styleMatch[0], `<style>\n${style}\n</style>`)
   .replace(scriptMatch[0], "")
-  .replace("</body>", `    <script>\n${script}\n    </script>\n  </body>`);
+  .replace("</body>", `    <script>\n${script}\n    </script>\n  </body>`)
+  .replace(/[ \t]+$/gm, "");
 
-const outputPath = join(fileDistDir, "index.html");
-await mkdir(dirname(outputPath), { recursive: true });
-await writeFile(outputPath, fileHtml);
+const fileOutputPath = join(fileDistDir, "index.html");
+await mkdir(dirname(fileOutputPath), { recursive: true });
+await writeFile(fileOutputPath, fileHtml);
+await writeFile("index.html", fileHtml);

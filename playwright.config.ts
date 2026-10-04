@@ -7,11 +7,13 @@ export default defineConfig({
     baseURL: "http://127.0.0.1:4173",
     trace: "on-first-retry"
   },
-  webServer: {
-    command: "npm run build && npx vite preview --host 127.0.0.1 --port 4173",
-    url: "http://127.0.0.1:4173",
-    reuseExistingServer: !process.env.CI
-  },
+  webServer: process.env.PLAYWRIGHT_NO_WEBSERVER
+    ? undefined
+    : {
+        command: "npm run build && npx vite preview --host 127.0.0.1 --port 4173",
+        url: "http://127.0.0.1:4173/dev.html",
+        reuseExistingServer: !process.env.CI
+      },
   projects: [
     {
       name: "chromium",

@@ -2,8 +2,8 @@ import { expect, test } from "@playwright/test";
 import { pathToFileURL } from "node:url";
 import { resolve } from "node:path";
 
-test("built game launches through file URL", async ({ page }) => {
-  const fileUrl = `${pathToFileURL(resolve("dist-file/index.html")).href}?difficulty=beginner&seed=201`;
+test("root index launches through file URL", async ({ page }) => {
+  const fileUrl = `${pathToFileURL(resolve("index.html")).href}?difficulty=beginner&seed=201`;
   const consoleErrors: string[] = [];
 
   page.on("console", (message) => {
