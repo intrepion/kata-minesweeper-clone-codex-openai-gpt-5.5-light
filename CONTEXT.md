@@ -10,6 +10,10 @@ The rectangular field of cells for a single game. The settled MVP boards are Beg
 
 The way a board adapts to available screen space. Expert mode should keep its 30 by 16 shape while fitting horizontally where practical and supporting compact scaling or pan and zoom on narrow screens.
 
+### Browser Smoke Test
+
+A real-browser check that exercises player-visible behavior rather than only validating compiled code.
+
 ### Cell
 
 One square on the board. A cell may hide a mine, be unrevealed, be revealed, or be flagged.
@@ -21,6 +25,10 @@ The action of revealing all unrevealed neighboring cells around a revealed numbe
 ### Classic Minesweeper
 
 A faithful version of the familiar desktop Minesweeper experience: fixed difficulty boards, mine counter, timer, reset face, fast reveal and flag interactions, first-click safety, and chording.
+
+### Direct-File Launch
+
+The ability to open the built game through a local file URL without a development server.
 
 ### Difficulty
 
@@ -38,9 +46,17 @@ A player mark on an unrevealed cell indicating that the player believes the cell
 
 The state transition for marking a hidden cell. The settled MVP cycle is unrevealed to flagged to unrevealed, without a question-mark state.
 
+### Game Engine
+
+The browser-independent game logic responsible for board generation, reveal, flagging, chording, win and loss detection, and game state transitions.
+
 ### Mine Counter
 
 The display showing the remaining unflagged mine estimate, calculated from the mine count minus current flags.
+
+### Playable UI
+
+The browser interface that renders the game engine state and handles player input.
 
 ### Question Mark
 
@@ -57,6 +73,14 @@ A small end-of-game display that shows the outcome and final time without blocki
 ### Seed
 
 A value that can reproduce the same mine layout and game setup.
+
+### Selected Difficulty
+
+The player's current difficulty choice. The MVP should remember this between sessions.
+
+### Staged MVP Slice
+
+An independently verified delivery step with a narrow playable or testable outcome.
 
 ### Timer
 
