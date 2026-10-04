@@ -132,6 +132,27 @@ export function moveFocus(game: GameState, direction: Direction): GameState {
   return { ...game, focused };
 }
 
+export function focusCell(game: GameState, position: Position): GameState {
+  return {
+    ...game,
+    focused: {
+      x: clamp(position.x, 0, game.difficulty.width - 1),
+      y: clamp(position.y, 0, game.difficulty.height - 1)
+    }
+  };
+}
+
+export function updateElapsed(game: GameState, now = Date.now()): GameState {
+  if (game.startedAt === null || game.endedAt !== null) {
+    return game;
+  }
+
+  return {
+    ...game,
+    elapsedSeconds: Math.floor((now - game.startedAt) / 1000)
+  };
+}
+
 export function setFace(game: GameState, face: GameState["face"]): GameState {
   if (game.status === "won" || game.status === "lost") {
     return game;
