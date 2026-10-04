@@ -2,6 +2,10 @@
 
 ## Glossary
 
+### Accessibility Baseline
+
+The minimum inclusive interaction standard for the MVP: keyboard controls, visible focus, useful ARIA labels, number meanings that are not color-only, and reduced-motion-safe behavior.
+
 ### Board
 
 The rectangular field of cells for a single game. The settled MVP boards are Beginner, Intermediate, and Expert.
@@ -17,6 +21,10 @@ A real-browser check that exercises player-visible behavior rather than only val
 ### Cell
 
 One square on the board. A cell may hide a mine, be unrevealed, be revealed, or be flagged.
+
+### Cell Contents
+
+The visible information inside a cell. The MVP should use reliable text and symbols for numbers, flags, and mines, styled with CSS rather than image assets.
 
 ### Chording
 
@@ -50,6 +58,14 @@ The state transition for marking a hidden cell. The settled MVP cycle is unrevea
 
 The browser-independent game logic responsible for board generation, reveal, flagging, chording, win and loss detection, and game state transitions.
 
+### Keyboard Controls
+
+The non-pointer controls for the board. Arrow keys move focus, Space or Enter reveals, F toggles a flag, and R resets the game; Space or Enter on a revealed number can chord when its flag count is satisfied.
+
+### Loss Reveal
+
+The end-of-game board state after revealing a mine. The MVP should reveal all mines, distinguish the exploded mine, distinguish incorrect flags, and keep correctly flagged mines recognizable.
+
 ### Mine Counter
 
 The display showing the remaining unflagged mine estimate, calculated from the mine count minus current flags.
@@ -69,6 +85,10 @@ The player action that uncovers a cell. Revealing a mine ends the game; revealin
 ### Result Summary
 
 A small end-of-game display that shows the outcome and final time without blocking inspection of the board.
+
+### Reset Face
+
+The reset control that also communicates game state. The MVP states are neutral during play, pressed or surprised while revealing, happy on win, and dead on loss.
 
 ### Seed
 
