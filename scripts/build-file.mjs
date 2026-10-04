@@ -3,7 +3,7 @@ import { dirname, join } from "node:path";
 
 const distDir = "dist";
 const fileDistDir = "dist-file";
-const html = await readFile(join(distDir, "dev.html"), "utf8");
+const html = await readFile(join(distDir, "vite.html"), "utf8");
 const scriptMatch = html.match(/<script type="module" crossorigin src="(?<src>[^"]+)"><\/script>/);
 const styleMatch = html.match(/<link rel="stylesheet" crossorigin href="(?<href>[^"]+)">/);
 

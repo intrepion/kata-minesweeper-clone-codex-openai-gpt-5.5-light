@@ -6,7 +6,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        index: resolve(__dirname, "dev.html")
+        index: resolve(__dirname, "vite.html")
       }
     }
   }

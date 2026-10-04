@@ -2,7 +2,7 @@ import { expect, test } from "@playwright/test";
 import { createGame, revealCell, toggleFlag } from "../src/game/engine";
 
 test("player can reveal a first safe cell and flag a hidden cell", async ({ page }) => {
-  await page.goto("/dev.html?difficulty=beginner&seed=101");
+  await page.goto("/vite.html?difficulty=beginner&seed=101");
 
   await page.getByTestId("cell-4-4").click();
   await expect(page.getByTestId("cell-4-4")).not.toHaveText("*");
@@ -14,7 +14,7 @@ test("player can reveal a first safe cell and flag a hidden cell", async ({ page
 });
 
 test("keyboard controls move focus, flag, and reset", async ({ page }) => {
-  await page.goto("/dev.html?difficulty=beginner&seed=102");
+  await page.goto("/vite.html?difficulty=beginner&seed=102");
 
   await page.getByTestId("cell-0-0").focus();
   await page.keyboard.press("ArrowRight");
@@ -36,7 +36,7 @@ test("loss reveals mines and marks the exploded mine", async ({ page }) => {
 
   expect(mine).toBeDefined();
 
-  await page.goto(`/dev.html?difficulty=beginner&seed=${seed}`);
+  await page.goto(`/vite.html?difficulty=beginner&seed=${seed}`);
   await page.getByTestId("cell-0-0").click();
   await page.getByTestId(`cell-${mine!.x}-${mine!.y}`).click();
 
@@ -65,7 +65,7 @@ test("player can chord from a satisfied number", async ({ page }) => {
   game = toggleFlag(game, hiddenMineNeighbor!);
   const before = game.revealedSafeCells;
 
-  await page.goto(`/dev.html?difficulty=beginner&seed=${seed}`);
+  await page.goto(`/vite.html?difficulty=beginner&seed=${seed}`);
   await page.getByTestId("cell-0-0").click();
   await page.getByTestId(`cell-${hiddenMineNeighbor!.x}-${hiddenMineNeighbor!.y}`).click({ button: "right" });
   await page.getByTestId(`cell-${numbered!.x}-${numbered!.y}`).click();
@@ -77,7 +77,7 @@ test("winning freezes the board and shows the result summary", async ({ page }) 
   const seed = 111;
   let game = revealCell(createGame({ difficulty: "beginner", seed }), { x: 0, y: 0 }, 0);
 
-  await page.goto(`/dev.html?difficulty=beginner&seed=${seed}`);
+  await page.goto(`/vite.html?difficulty=beginner&seed=${seed}`);
   await page.getByTestId("cell-0-0").click();
 
   for (const cell of game.board) {
@@ -93,7 +93,7 @@ test("winning freezes the board and shows the result summary", async ({ page }) 
 
 test("expert board keeps its settled dimensions on mobile viewport", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/dev.html?difficulty=expert&seed=104");
+  await page.goto("/vite.html?difficulty=expert&seed=104");
 
   await expect(page.getByTestId("board")).toHaveCSS("grid-template-columns", /.+/);
   await expect(page.getByTestId("cell-29-15")).toBeVisible();

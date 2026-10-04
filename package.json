@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite --host 127.0.0.1 --open /dev.html",
+    "dev": "vite --host 127.0.0.1 --open /vite.html",
     "build": "tsc && vite build",
     "build:file": "npm run build && node scripts/build-file.mjs",
     "check": "npm run test:unit && npm run build",

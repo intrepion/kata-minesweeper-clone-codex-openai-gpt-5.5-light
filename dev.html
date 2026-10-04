@@ -4,9 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Minesweeper</title>
+    <script>
+      const target = window.location.protocol === "file:" ? "index.html" : "/vite.html";
+      window.location.replace(target + window.location.search + window.location.hash);
+    </script>
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
+    <p>Opening Minesweeper...</p>
   </body>
 </html>
