@@ -1,5 +1,5 @@
 import { expect, test } from "@playwright/test";
-import { createGame, revealCell } from "../src/game/engine";
+import { createGame, revealCell, toggleFlag } from "../src/game/engine";
 
 test("player can reveal a first safe cell and flag a hidden cell", async ({ page }) => {
   await page.goto("/?difficulty=beginner&seed=101");
@@ -43,6 +43,52 @@ test("loss reveals mines and marks the exploded mine", async ({ page }) => {
   await expect(page.getByTestId("status")).toContainText("Lost after");
   await expect(page.getByTestId("reset")).toHaveText("X(");
   await expect(page.getByTestId(`cell-${mine!.x}-${mine!.y}`)).toHaveText("!");
+});
+
+test("player can chord from a satisfied number", async ({ page }) => {
+  const seed = 20;
+  let game = revealCell(createGame({ difficulty: "beginner", seed }), { x: 0, y: 0 }, 0);
+  const numbered = game.board.find((cell) => cell.revealed && cell.adjacentMines > 0);
+
+  expect(numbered).toBeDefined();
+
+  const hiddenMineNeighbor = game.board.find(
+    (cell) =>
+      !cell.revealed &&
+      cell.hasMine &&
+      Math.abs(cell.x - numbered!.x) <= 1 &&
+      Math.abs(cell.y - numbered!.y) <= 1
+  );
+
+  expect(hiddenMineNeighbor).toBeDefined();
+
+  game = toggleFlag(game, hiddenMineNeighbor!);
+  const before = game.revealedSafeCells;
+
+  await page.goto(`/?difficulty=beginner&seed=${seed}`);
+  await page.getByTestId("cell-0-0").click();
+  await page.getByTestId(`cell-${hiddenMineNeighbor!.x}-${hiddenMineNeighbor!.y}`).click({ button: "right" });
+  await page.getByTestId(`cell-${numbered!.x}-${numbered!.y}`).click();
+
+  await expect.poll(() => page.locator(".cell-revealed").count()).toBeGreaterThan(before);
+});
+
+test("winning freezes the board and shows the result summary", async ({ page }) => {
+  const seed = 111;
+  let game = revealCell(createGame({ difficulty: "beginner", seed }), { x: 0, y: 0 }, 0);
+
+  await page.goto(`/?difficulty=beginner&seed=${seed}`);
+  await page.getByTestId("cell-0-0").click();
+
+  for (const cell of game.board) {
+    if (!cell.hasMine && !cell.revealed) {
+      await page.getByTestId(`cell-${cell.x}-${cell.y}`).click();
+      game = revealCell(game, cell, 1000);
+    }
+  }
+
+  await expect(page.getByTestId("status")).toContainText("Won in");
+  await expect(page.getByTestId("reset")).toHaveText("B)");
 });
 
 test("expert board keeps its settled dimensions on mobile viewport", async ({ page }) => {
