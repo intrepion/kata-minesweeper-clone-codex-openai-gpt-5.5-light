@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "workflowCommit": "e240ec5d3d8d405b2778e5d50ef0dc3ff2579e7e",
+  "sourceCommit": "237c6e8976bfbaf9039f088f759a7a7397e00c6a",
+  "runId": "41405703016",
+  "url": "http://127.0.0.1:4223/",
+  "inputs": {
+    "index.html": "da1dc81850a27b50d216416ad2b86b5f14a18860771cf8c76722ffbc460489dc"
+  },
+  "browser": "153.0.8010.12",
+  "seed": 721,
+  "viewport": {
+    "width": 1280,
+    "height": 1000
+  },
+  "screenshots": [
+    "minesweeper-01.png",
+    "minesweeper-02.png"
+  ]
+}

@@ -1,6 +1,43 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "gameId": "kata-minesweeper-clone-codex-openai-gpt-5.5-light",
   "playUrl": "https://intrepion.github.io/kata-minesweeper-clone-codex-openai-gpt-5.5-light/",
-  "screenshots": []
+  "screenshots": [
+    {
+      "path": "arcade/screenshots/ci-20261102-01.jpg",
+      "sha256": "61b0102fe2b0d3f725c34583b04f7f46638c48c9d88a0d834606fd5b24a7c76a",
+      "alt": "Minesweeper gameplay, view 1",
+      "provenance": {
+        "kind": "ci_gameplay_capture",
+        "sourcePath": "arcade/capture-evidence/ci-20261102-01.png",
+        "sourceSha256": "a9c8e9bb66ba17ce57afe5f707a04dfffc798d503628f2f5b15c15b5766b65cf",
+        "captureCommit": "237c6e8976bfbaf9039f088f759a7a7397e00c6a",
+        "workflowRunId": "41405703016",
+        "inputHashes": {
+          "index.html": "da1dc81850a27b50d216416ad2b86b5f14a18860771cf8c76722ffbc460489dc"
+        },
+        "publishedFilesVerifiedAt": "2026-11-02T19:01:20Z",
+        "captureRecordPath": "arcade/capture-evidence/ci-20261102-record.json",
+        "captureRecordSha256": "20632338bcdc4209fecd375accde5b809b8a5cb92563301d454886d9df4554de"
+      }
+    },
+    {
+      "path": "arcade/screenshots/ci-20261102-02.jpg",
+      "sha256": "65b90a4da833fb6a2893ed1c3f9381b8c98df97b02ec61343dd8ca6bf7151488",
+      "alt": "Minesweeper gameplay, view 2",
+      "provenance": {
+        "kind": "ci_gameplay_capture",
+        "sourcePath": "arcade/capture-evidence/ci-20261102-02.png",
+        "sourceSha256": "8234de46fd764b0595c6323460f3f73f12fd8d6967fce8377185659f2afce0a8",
+        "captureCommit": "237c6e8976bfbaf9039f088f759a7a7397e00c6a",
+        "workflowRunId": "41405703016",
+        "inputHashes": {
+          "index.html": "da1dc81850a27b50d216416ad2b86b5f14a18860771cf8c76722ffbc460489dc"
+        },
+        "publishedFilesVerifiedAt": "2026-11-02T19:01:20Z",
+        "captureRecordPath": "arcade/capture-evidence/ci-20261102-record.json",
+        "captureRecordSha256": "20632338bcdc4209fecd375accde5b809b8a5cb92563301d454886d9df4554de"
+      }
+    }
+  ]
 }
